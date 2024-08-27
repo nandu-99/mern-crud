@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3003/users';
+const API_URL = 'https://mern-crud-server-nine.vercel.app/users';
 
 // Create a new user
 export const createUser = async (user) => {
