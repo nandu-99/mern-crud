@@ -1,13 +1,14 @@
 const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const app = express();
+const cors = require("cors");
 const dotenv = require("dotenv");
 const port = 3003;
 dotenv.config();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
-
+app.use(cors());
 // MongoDB connection string (replace with your own)
 const url = process.env.MONGODB_URL;
 const client = new MongoClient(url);
