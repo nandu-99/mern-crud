@@ -24,7 +24,13 @@ async function connectDB() {
   collection = db.collection('users');
 }
 
-connectDB().catch(console.error);
+connectDB().then(
+  ()=>{
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  }
+).catch(console.error);
 
 // API Routes
 
@@ -42,7 +48,7 @@ app.post('/users', async (req, res) => {
 // Read (GET)
 app.get('/users', async (req, res) => {
   try {
-    const users = await collection.find({}).toArray();
+    const users = await collection?.find({}).toArray();
     res.status(200).json(users);
   } catch (error) {
     console.log(error)
@@ -98,6 +104,4 @@ app.delete('/users/:id', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+
